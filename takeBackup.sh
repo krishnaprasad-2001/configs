@@ -1,10 +1,15 @@
 #!/bin/bash
 
 backup_file=$(date |tr " " _ |tr ":" _)
-rsync -avz /home/krishna/.tmux .
-rsync -avz /home/krishna/.tmux.conf .
-echo "$(backup_file): Backup started" >> /var/log/config-backup.log
-zip -r /root/config/config_$backup_file /home/krishna/.config
+rsync -avz /home/krishna/.tmux .  /root/config/
+rsync -avz /home/krishna/.tmux.conf .  /root/config/
+rsync -avz /home/krishna/.config/neofetch  /root/config/
+rsync -avz /home/krishna/.config/nvim  /root/config/
+rsync -avz /home/krishna/.config/i3  /root/config/
+rsync -avz /home/krishna/.config/nvim_backup  /root/config/
+rsync -avz /home/krishna/.config/picom.conf  /root/config/
+rsync -avz /home/krishna/.config/rofi  /root/config/
+rsync -avz /home/krishna/.config/tmux  /root/config/
 cd /root/config
 git add . 
 if [[ -t 1 ]]; then
